@@ -1,0 +1,1788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/navbar-fixed/">
+    <!-- <link href="../../../../../bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <link rel="icon" href="https://scontent-mia3-2.xx.fbcdn.net/v/t39.30808-6/343510494_266588649051808_2234948659946475288_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9Ao_Fou3aDYAX81nO_S&_nc_ht=scontent-mia3-2.xx&oh=00_AfAXS_RgkWD7pzh-WAjIcu3GINvCGLMvULbxBqxAIP5FWw&oe=6455A54C">
+
+    <title>Parole Services</title>
+
+    <script>
+        const fecha_final = new Date(2023, 4, 30)
+    </script>
+
+    <style>
+        body{
+            background-color: #dee2e6;
+            overflow: hidden;
+        }
+        #modal-verificar h2{
+            text-align: center;
+            margin-bottom: 3rem !important;
+        }
+        .carousel-indicators [data-bs-target]{
+            filter: drop-shadow(0px 0px 2px black);
+        }
+
+        .carousel{
+            margin-top: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .carousel-caption{
+            font-weight: 450;
+            filter: drop-shadow(1px 1px 5px black);
+        }
+
+        .carousel-item .port{
+            height: calc(45vh + 20vw);
+        }
+
+
+        .port{
+            width: 100vw;
+        }
+        #error{
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 90vw;
+            max-width: 800px;
+        }
+        #spi{
+            display: none;
+            position: fixed;
+            z-index: 1990;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #00000059;
+            border-radius: 1rem;
+            padding: 25px;
+            filter: blur(15%);
+        }
+
+        #spi .spinner-border{
+            width: 3rem;
+            height: 3rem;
+        }
+        .accordion-collapse, #modal-verificar p, #modal-trabajos p, #modal-trabajos h5{
+            text-indent: 1.4rem;
+        }
+
+        #cont-log{
+            position: fixed;
+            width: 110vw;
+            height: 110vh;
+            display: block;
+            background-color: aliceblue;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+
+        }
+
+        #cont-log #cont{
+            position: relative;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* background-color: #dee2e6; */
+            width: 150px;
+            text-align: center;
+        }
+
+        #cont-log img{
+            background-color: #284d72;
+            border-radius: 20%;
+        }
+
+        #cont-log h3{
+            font-size: 2rem;
+            width: 150px;
+            font-family: "Roboto_Condensed variant4", Tofu;
+            font-weight: 700;
+        }
+
+        #con-soporte a{
+            z-index: 1900;
+            position: fixed;
+            bottom: 5%;
+            right: calc(5% + 10px);
+            text-decoration: none;
+        }
+
+
+        #con-soporte p{ 
+            z-index: 2;
+            position: absolute;
+            bottom: -20%;
+            left: 10px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            filter: drop-shadow(2px 4px 6px black);
+        }
+
+        #soporte img{
+            background-color: blue;
+            padding: 4px;
+        }
+
+        #con-soporte img{
+            filter: drop-shadow(2px 3px 5px black);
+            border-radius: 50%;
+        }
+
+
+
+        .no{
+            display: none !important;
+        }
+
+        #home{
+            padding: 0px 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        #con-us{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+            margin-bottom: 1rem;
+        }
+
+        #user{
+            width: 200px;
+            margin: calc(1rem + 1vh) 10px;
+            text-align: center;
+        }
+
+
+        #user img{
+            display: block;
+            width: 150px; height: 150px;
+            background-color: #777;
+            border-radius: 50%;
+            margin: auto;
+        }
+
+        #user a{
+            display: block;
+            width: 150px;
+            margin: auto;
+        }
+
+        #tex-in{
+            width: 60%;
+            min-width: 280px;
+        }
+
+        #tex-in > p{
+            text-indent: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        #cont-t{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+
+        #trabajos header{
+            text-align: center;
+        }
+        #trabajos{
+            margin-top: calc(6rem + 2vh) !important;
+
+        }
+        .card{
+            display: block;
+            margin: 4vh auto;
+            max-width: 400px;
+        }
+
+        @media (min-width: 900px) {
+            #trabajos .card{
+                width: 30%;
+            }
+        }
+        #precios, #trabajos{
+            width: 80%;
+            margin: auto;
+        }
+        #precios header, #formulario header{
+            text-align: center;
+            margin-bottom: 3vh;
+        }
+        #faq, #precios, #formulario{
+            margin-top: calc(40px + 10vh) !important ;
+        }
+        #faq h2{
+            width: 80%;
+            margin: auto;
+            font-size: calc(1.5rem + 2vw);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        .accordion, #formulario, .cont-form{
+            width: 80%;
+            margin: auto;
+        }
+        .cont-form{
+            margin-top: 2rem;
+            max-width: 600px;
+        }
+        .accordion-item{
+            margin: 1rem 0px;
+            border-radius: .25rem;
+        }
+        .needs-validation .btn-primary{
+            margin-top: 1.8rem;
+        }
+        .pie, #trabajos{
+            margin-top: 4rem;
+        }
+
+        .indent{
+            text-indent: 1.7rem;
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+
+    <div id="cont-log">
+        <div id="cont">
+            <img src="https://scontent-mia3-2.xx.fbcdn.net/v/t39.30808-6/343510494_266588649051808_2234948659946475288_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9Ao_Fou3aDYAX81nO_S&_nc_ht=scontent-mia3-2.xx&oh=00_AfAXS_RgkWD7pzh-WAjIcu3GINvCGLMvULbxBqxAIP5FWw&oe=6455A54C" alt="" width="150px" height="150px">
+            <h3>Parole Services</h3>
+        </div>
+
+    </div>
+
+
+    <!-- 
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+        ...................................................
+    -->
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="https://scontent-mia3-2.xx.fbcdn.net/v/t39.30808-6/343510494_266588649051808_2234948659946475288_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9Ao_Fou3aDYAX81nO_S&_nc_ht=scontent-mia3-2.xx&oh=00_AfAXS_RgkWD7pzh-WAjIcu3GINvCGLMvULbxBqxAIP5FWw&oe=6455A54C" alt="" width="35px" height="35px" alt="" style="border-radius: 50%;"> 
+                    <p style="display: inline-block;margin-bottom: 0px !important;vertical-align: middle; font-family: 'Roboto_Condensed variant4', Tofu;">Parole Services</p>
+                </a> 
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link enla" aria-current="page" href="#" objetivo=".home">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link enla" href="#" objetivo="#trabajos">Trabajos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link enla" objetivo="#precios">Planes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link enla" objetivo="#formulario">Formulario de admisión</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link enla" objetivo="#faq">Preguntas Frecuentes</a>
+                        </li>
+                    </ul>
+    
+                    <form class="d-flex" method="post" id="verf">
+                        <input class="form-control me-2" type="search" placeholder="Verifique su estado" id="busca" aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Verificar</button>
+                    </form>
+    
+                </div>
+    
+            </div>
+        </nav>
+
+    </header>
+
+
+
+
+    <main>
+
+        <div class="modal fade" id="modal-trabajos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="trabajos-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content rounded-6 shadow">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title" id="trabajos-label">
+                            <span class="data-modal limpieza">Servicios de limpieza</span>                          </span>
+                            <span class="data-modal almacenes">Gestión de almacenes</span>
+                            <span class="data-modal construccion">Trabajador de la construcción</span>
+                            
+                            <!-- ************************ -->
+                            <span class="data-modal basico">Basico</span>
+                            <span class="data-modal medio">Medio</span>
+                            <span class="data-modal premiun">Premium</span>
+                            
+                            <!-- ************************ -->
+                            <span class="data-modal terminos">Términos y Condiciones</span>
+                            
+                            <!-- ************************ -->
+                            <span class="data-modal envi">Formulario Enviado</span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body py-0">
+
+                        <div class="data-modal limpieza">
+                            <p>Nuestra principal misión es brindar una excelente experiencia gastronomica y social a nuestros clientes por lo que requerimos las mejores condiciones higienicas posibles.</p>
+        
+                            <p>Las principales responsabilidades de nuestro puesto son:</p>
+                            <ul>
+                                <li>Lavado de la vajilla, baterías de cocina y equipamiento general.
+                                    Orden y limpieza de el local, los depósitos y los baños.
+                                    Acomodar la mercadería entrante.</li>
+                                <li>Sacar los residuos.</li>
+                            </ul>
+        
+                            <p>¿Que estamos buscando?</p>
+                            <ul>
+                                <li>Amor y respeto por la gastronomía.</li>
+                                <li>Agilidad y buen desempeño.</li>
+                            </ul>
+    
+                            <p>¿Que ofrecemos?</p>
+                            <ul>
+                                <li>Incorporación Inmediata.</li>
+                                <li>Estabilidad en el puesto.</li>
+                                <li>Oportunidades de crecimiento.</li>
+                                <li>Excelente ambiente laboral.</li>
+                                <li>Horas extras remuneradas.</li>
+                            </ul>
+    
+                            <p>Detalles laborales:</p>
+                            
+                            <table  class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-start">Salario</th>
+                                        <td class="text-end">15$/hora</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horario</th>
+                                        <td class="text-end">Diurno</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horas por dia</th>
+                                        <td class="text-end">8h</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias laborables</th>
+                                        <td class="text-end">5/semana</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias de pago</th>
+                                        <td class="text-end">Todos los viernes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="data-modal almacenes">
+                            <p>Necesitamos a personas dinámicas, responsables y con experiencia en la gestión y el acomodo de productos asi como la realización de inventarios.</p>
+        
+                            <p>Las principales responsabilidades de nuestro puesto son:</p>
+                            <ul>
+                                <li>Transportar y mover mercancías de forma segura y eficiente dentro y fuera de los almacenes.</li>
+                                <li>Almacenar las mercancías de manera segura y organizada de acuero a las indicaciones.</li>
+                                <li>Verificar el estado adecuado de los envios antes de ser descargados.</li>
+                                <li>Asegurarse de que los productos sean almacenados correctamente.</li>
+                                <li>Mantener un control estricto de los inventarios.</li>
+                            </ul>
+        
+                            <p>¿Que estamos buscando?</p>
+                            <ul>
+                                <li>Experiencia previa en el manejo de mercancías.</li>
+                                <li>Fuerza y resistencia física.</li>
+                                <li>Capacidad para trabajar en equipo.</li>
+                                <li>Capacidad para leer y comprender las etiquetas de almacenamiento.</li>
+                                <li>Capacidad de trabajar de manera segura y responzable.</li>
+                                <li>Agilidad y buen desempeño.</li>
+                            </ul>
+    
+                            <p>¿Que ofrecemos?</p>
+                            <ul>
+                                <li>Incorporación Inmediata.</li>
+                                <li>Estabilidad en el puesto.</li>
+                                <li>Oportunidades de crecimiento.</li>
+                                <li>Excelente ambiente laboral.</li>
+                                <li>BBonificación por rendimiento.</li>
+                                <li>Capacitación y desarrollo profesional.</li>
+                            </ul>
+    
+                            <p>Detalles laborales:</p>
+                            
+                            <table  class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-start">Salario</th>
+                                        <td class="text-end">15$/hora</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horario</th>
+                                        <td class="text-end">Diurno</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horas por dia</th>
+                                        <td class="text-end">8h + Extras</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias laborables</th>
+                                        <td class="text-end">5/semana</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias de pago</th>
+                                        <td class="text-end">Todos los viernes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="data-modal construccion">
+                            <p>Necesitamos a personas con actitud positiva y emprendedora con la oportunidad unica de no tener experiencia ya que ofertamos un curso inicial de capacitación.</p>
+
+                            <p>Las principales responsabilidades de nuestro puesto son:</p>
+                            <ul>
+                                <li>Aplicar materiales de aislamiento y impermeabilización.</li>
+                                <li>Instalar sistema de calefacción, ventilación y aire acondicionado.</li>
+                                <li>Colocar revestimientos de paredes y techos.</li>
+                                <li>Instalar instalaciones eléctricas y de telecomunicaciones.</li>
+                                <li>Colocar puertas y ventanas.</li>
+                                <li>Otros.</li>
+                            </ul>
+        
+                            <p>¿Que estamos buscando?</p>
+                            <ul>
+                                <li>Fuerza y resistencia física.</li>
+                                <li>Capacidad para trabajar en equipo.</li>
+                                <li>Capacidad de trabajar de manera segura y responzable.</li>
+                                <li>Agilidad y buen desempeño.</li>
+                            </ul>
+    
+                            <p>¿Que ofrecemos?</p>
+                            <ul>
+                                <li>Incorporación Inmediata.</li>
+                                <li>Estabilidad en el puesto.</li>
+                                <li>Oportunidades de crecimiento.</li>
+                                <li>Bonificación por rendimiento.</li>
+                                <li>Cursos de capacitación para desarrollar habilidades.</li>
+                            </ul>
+    
+                            <p>Detalles laborales:</p>
+                            
+                            <table  class="table">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row" class="text-start">Salario</th>
+                                        <td class="text-end">16$/hora</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horario</th>
+                                        <td class="text-end">Variable</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Horas por dia</th>
+                                        <td class="text-end">8h + Extras</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias laborables</th>
+                                        <td class="text-end">Variable</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row" class="text-start">Dias de pago</th>
+                                        <td class="text-end">Todos los viernes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                        </div>
+
+
+                        <!-- ************************ -->
+                        <div class="data-modal basico indent">
+                            El Plan Básico de patrocinio para cubanos tiene un costo de $5,000 para aquellos cubanos que deseen alcanzar el sueño americano. Este plan no incluye vuelo pagado, hospedaje ni transporte laboral y requiere un pago extra como pago laboral luego de encontrarse trabajando aquí en E.U de $3,000, el cual se pagará por cuotas del 30% del salario hasta que se haya pagado la totalidad. 
+                        </div>
+                        
+                        <div class="data-modal medio indent">
+                            El Plan Medio de patrocinio para cubanos tiene un costo de $7,000 para aquellos cubanos que deseen alcanzar el sueño americano. Este plan incluye vuelo pagado, sin embargo no incluye hospedaje ni transporte laboral. Además requiere un pago extra como pago laboral luego de encontrarse trabajando aquí en E.U de  $1,000, el cual se pagará por cuotas del 30% del salario hasta que se haya pagado la totalidad. 
+                        </div>
+                        
+                        <div class="data-modal premiun indent">
+                            El Plan Premium de patrocinio para cubanos tiene un costo de $10,000 para aquellos cubanos que deseen alcanzar el sueño americano. Este plan incluye vuelo pagado, así como 2 meses de hospedaje y transporte laboral incluidos. No se requiere pago laboral.
+                        </div>
+                        
+                        <!-- ************************ -->
+                        <div class="data-modal terminos">
+                            <h2 style="text-indent: 1.7rem; margin: 1.2rem 0px;">Estos términos y condiciones regulan el uso del sitio web y todos los servicios relacionados.</h2>
+                            <h3>1. Aceptación de los Términos y Condiciones</h3>
+                            <p>Al usar este sitio web, usted acepta estos términos y condiciones. Si no está de acuerdo con estos términos y condiciones, no puede usar este sitio web.</p>
+                            <h3>2. Uso del Sitio Web</h3>
+                            <p>Este sitio web se proporciona para su uso personal y no comercial. Usted se compromete a no usar este sitio web para ningún fin ilegal o que viole estos términos y condiciones.</p>
+                            <h3>3. Información Proporcionada</h3>
+                            <p>Toda la información contenida en este sitio web es proporcionada como un servicio para los usuarios. No se garantiza la exactitud de la información contenida en el sitio web y no se ofrecen representaciones ni garantías con respecto a la información.</p>
+                            <h3>4. Servicios</h3>
+                            <p>Este sitio web ofrece servicios para ayudar a los cubanos a alcanzar el sueño americano a través del sistema de Parole. El sitio web también ofrece información sobre los patrocinadores, los trabajos disponibles y los procedimientos para solicitar el Parole.</p>
+                            <h3>5. Enlaces</h3>
+                            <p>Este sitio web puede contener enlaces a otros sitios web. Estos enlaces se proporcionan solo con fines informativos y no de forma explícita o implícita se garantiza la exactitud de la información contenida en los sitios web enlazados.</p>
+                            <h3>6. Seguridad</h3>
+                            <p>El usuario se compromete a respetar la seguridad del sitio web y a no intentar acceder a la información no autorizada. El usuario se compromete también a no intentar explotar o dañar el sitio web.</p>
+                            <h3>7. Responsabilidad</h3>
+                            <p>Este sitio web no será responsable de ningún daño o perjuicio ocasionado por el uso del sitio web.</p>
+                            <h3>8. Pagos</h3>
+                            <p>Usted se compromete a realizar el pago acordado en el plan seleccionado bajo su responsablidad. Si no esta de acuerdo a cumplir con el total de el pago establecido no seleccione ninguno de nuestros planes dese un principio.</p>
+                            <h3>9. Modificaciones</h3>
+                            <p>Nos reservamos el derecho de modificar estos términos y condiciones en cualquier momento sin previo aviso.</p>
+                            <h3>10. Devoluciónes</h3>
+                            <p>Solo realizaremos devoluciones a las personas que no puedan terminar el proceso por algun problema externo o por parte de nosotros y no porque no decida continuar con el proceso.</p>
+                            <h3>11. Contacto</h3>
+                            <p>Si tiene alguna pregunta sobre estos términos y condiciones, puede contactar con nosotros a través de nuestro sitio web.</p>
+                        </div>     
+                        
+                        <!-- ************************ -->
+                        <div class="data-modal envi indent">
+                            Sus datos han sido enviados con éxito. Puede verificar su estado usando el código de verificación <strong class="codig"></strong>. Por favor, guarde este código y no lo pierda, ya que si lo pierde no podrá acceder a la verificación de su estado y tendrá que contactar con soporte para que se lo vuelvan a proporcionar.
+                        </div>     
+
+                    </div>
+                    <div class="modal-footer flex-column border-top-0">
+                        <button type="button" class="btn btn-lg btn-light w-100 mx-0"  data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                    
+                </div>
+            </div>    
+        </div>
+
+
+        <div class="modal fade" id="modal-verificar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="trabajos-label" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content rounded-6 shadow">
+                    <div class="modal-body p-5">
+                        <h2 class="fw-bold mb-0 inv mod-data">Código de Verificación Inválido</h2>
+                        <h2 class="fw-bold mb-0 vali mod-data">Validando Datos</h2>
+                        <h2 class="fw-bold mb-0 apto mod-data">¡Apto para optar por el programa!</h2>
+                        <h2 class="fw-bold mb-0 cuent-act mod-data">¡Cuenta Activada!</h2>
+                        <h2 class="fw-bold mb-0 proc mod-data">¡Trámites en Proceso!</h2>
+                        <h2 class="fw-bold mb-0 fel mod-data">¡Felicidades!</h2>
+                
+                        <p class="inv mod-data">Código de verificación inválido o vencido. Esto puede deberse a que es un código incorrecto o su fecha de validación ha caducado para proteger la identidad de los usuarios. Si ha olvidado su código o ha caducado, contacte con soporte para que lo ayude a resolver su problema.</p>
+                        <p class="vali mod-data">Nuestro equipo está validando los datos del usuario <strong class="nom"></strong> <strong class="apell"></strong> con el número de pasaporte <strong class="num-pass"></strong> para comprobar que usted es apto y cumple con los requisitos para optar por uno de nuestros planes. Haremos todo lo posible por darle la respuesta lo antes posible. Tenga en cuenta que este proceso puede tardar entre 3 y 7 días, por favor sea paciente.</p>
+                        <p class="apto mod-data">Nuestro equipo ha determinado que el usuario <strong class="nom"></strong> <strong class="apell"></strong> con el número de pasaporte <strong class="num-pass"></strong> es apto para aplicar a uno de nuestros planes. Por favor, lea detenidamente nuestros planes y preguntas frecuentes para que entienda mejor el proceso y, si decide optar por alguno de ellos, póngase en contacto con nuestros <a href="">Colaboradores en Cuba</a>.</p>
+                        <p class="cuent-act mod-data">El usuario <strong class="nom"></strong> <strong class="apell"></strong> con el número de pasaporte <strong class="num-pass"></strong> ha aplicado para nuestro plan <strong class="plan"></strong>. Comenzaremos de inmediato con la tramitación de sus papeles, podrá seguir verificando su estado con su código de verificación dado al inicio. Lo mantendremos informado semanalmente de el proceso, les pedimos paciencia y que no realicen preguntas innecesarias fuera del informe semanal.</p>
+                        <p class="proc mod-data">Los trámites del usuario <strong class="nom"></strong> <strong class="apell"></strong> con el número de pasaporte <strong class="num-pass"></strong> están en proceso. Tenga en cuenta que esto es un proceso lento y complejo, a pesar de que hacemos todo lo posible por hacer lo que está en nuestras manos de la forma más rápida posible, esto puede tardar entre 1 y 3 meses. Lo/a mantendremos informado/a semanalmente. Por favor, evite hacer preguntas inecesarias.</p>
+                        <p class="fel mod-data">¡Felicidades! Ha sido aprobado su Parole. Pronto lo veremos aquí en E.E.U.U.</p>
+
+                        <div class="priv mod-data">
+                            <input type="number" id="pri">
+                            <p>Esp: <span id="esp"></span></p>
+                            <p>pag: <span id="pag"></span></p>
+                            <p>apr: <span id="apr"></span></p>
+                        </div>
+
+                        <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="con-soporte">
+            <a href="https://www.facebook.com/profile.php?id=100092488775510" id="soporte-eu"><p>EU</p><img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344164963_1225621434991967_7373688410158755952_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=QdN-LCbMy-oAX_gRn7F&_nc_ht=scontent-mia3-1.xx&oh=00_AfDgln4NsOu2eAoiCiBwycr-4WrLozouq90LP5u_448pew&oe=64553DC6" alt="" width="50px" height="50px"></a> 
+            <a href="https://www.facebook.com/profile.php?id=100091761923993" id="soporte-cu" ><p>CU</p><img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/343996415_248009207799448_9150354216231235540_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=BakfozF3fyEAX9qOK1I&_nc_ht=scontent-mia3-1.xx&oh=00_AfDJWjzdSL7043su9f7-0PhYtmI4Fi3vH87Fjpy1j0EXXA&oe=6454F61D" alt="" width="50px" height="50px"></a>
+            <a href=""  id="soporte" estado="false"><img src="https://img.icons8.com/ios/50/null/online-support--v1.png" alt="" width="50px" height="50px" style="background-color: #002bff;"></a>
+        </div>
+
+        <div id="spi">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+
+        <div id="myCarousel" class="carousel slide cuerpo home" data-bs-ride="carousel" >
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344028178_2130643397127236_6852597256051371488_n.jpg?stp=dst-jpg_p235x350&_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Jyo4mZXLkjoAX9UWVkj&_nc_ht=scontent-mia3-1.xx&oh=00_AfDY7XunGO7zTpq-SheRQx3HBrwA-c1y16geAcf-9WrYag&oe=6454D4FC" alt="" class="port">        
+                    <div class="container">
+                    <div class="carousel-caption text-start">
+                        <h1>Encuentra un patrocinador</h1>
+                        <p>Ten la oportunidad de conseguir un patrocinador con planes accequibles.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/343998487_1670607233399838_8953863052484498298_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=OQCMISUWi2MAX8koOH3&_nc_ht=scontent-mia3-1.xx&oh=00_AfBRr7s6Pbj2NgPM_JEu_aIwlUsfYOprB1xHjWm8sbD9Xg&oe=6455AF1A" class="port" alt="">
+        
+                    <div class="container">
+                    <div class="carousel-caption">
+                        <h1>No arriesgues tu vida al mar</h1>
+                        <p>No arresgues tu vida por un sueño, sin vida no hay sueños.</p>
+                    </div>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344034405_1244474162882075_6336465496661476077_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=XUZAaotXOusAX8LkI5I&_nc_ht=scontent-mia3-1.xx&oh=00_AfChJegijG0HERUPFrhf7Foaur_ygRWvpt5CdYykhk1A9w&oe=6454D3CB" class="port" alt="">  
+
+                    <div class="container">
+                    <div class="carousel-caption text-end">
+                        <h1>Oportunidad unica</h1>
+                        <p>Obten ademas de la posibilidad de cumplir el sueño americano un trabajo con el cual empezar.</p>
+                    </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+
+
+        <div id="home" class="cuerpo home">
+            <div id="tex-in">
+                
+                <p>
+                    Debido al gran deseo de los cubanos por alcanzar el sueño americano, lanzamos este programa para beneficiar a cubanos usando el sistema de <a href="https://www.uscis.gov/es/CHNV">Parole</a>, apoyándonos en los patrocinadores que decidieron unirse a nuestro equipo y en aquellos que decidan unirse en un futuro para ayudar a aquellos cubanos que no tienen la posibilidad de cumplir su sueño debido a que no poseen ningún familiar o amistad que pueda hacerse responsable por ustedes. Además de esto, les proporcionaremos un trabajo en dependencia de la disponibilidad que tengamos en el momento. Por el momento, solo podremos traer a pocos de ustedes cada cierto tiempo, aunque estamos haciendo lo posible por encontrar nuevos patrocinadores que se sumen a nuestro equipo e incrementar la cantidad de nuevas solicitudes disponibles. Aquí en nuestro sitio web podrá encontrar toda la información necesaria sobre el procedimiento, tipos de trabajos, planes, preguntas frecuentes y mucho más. Por favor, tenga cuidado con cualquier estafa por parte de cualquier persona que le escriba fuera de nuestras páginas oficiales; solo confíe en las páginas y números que están vinculados a nuestro sitio web. Si tiene alguna duda, inquietud o sugerencia que no sea respondida por las preguntas frecuentes, no dude en contactar con soporte.
+                </p>
+                
+                <div id="con-us">
+                    
+                    <div id="user">
+                        <img src="https://scontent-mia3-2.xx.fbcdn.net/v/t39.30808-6/344095192_959877038532351_7419613087399105781_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=EF_upo-O_jgAX_-poBF&_nc_ht=scontent-mia3-2.xx&oh=00_AfAtamyrBNmyGkLUM0es2NtptPdp0LF3xSzo2RDKLc_f0Q&oe=6454D5AD" alt="" width="150px" height="150px">
+                        <p>Colaborador en E.E.U.U</p>
+                    </div>
+                    
+                    <div id="user">
+                        <img src="https://scontent-mia3-2.xx.fbcdn.net/v/t39.30808-1/343788938_783112163186216_7197024433630677046_n.jpg?stp=c0.0.200.200a_dst-jpg_p200x200&_nc_cat=102&ccb=1-7&_nc_sid=7206a8&_nc_ohc=HED0wjUM4R8AX9SPlk_&_nc_ht=scontent-mia3-2.xx&oh=00_AfB15yvcuS4HyV1YrUsO4Ls_0zZSDEfVio1ElnKYZbjoSw&oe=6454C7F5" alt="" width="150px" height="150px">
+                        <p>Colaborador en E.E.U.U</p>
+                    </div>
+                    
+                    <div id="user">
+                        <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344344301_782436206779154_7421479464313596438_n.jpg?stp=dst-jpg_p526x296&_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=MwesIjz0s_EAX-bzH3c&_nc_ht=scontent-mia3-1.xx&oh=00_AfBO1m6y9i8Tl7mn3EWRm6XNGKYfS-KlZzgY73QDT-Hjlg&oe=6455D0DA" alt="" width="150px" height="150px">
+                        <p>Colaboradora en C.U</p>
+                    </div>
+
+
+                </div>
+                
+            </div>
+        
+        </div>
+
+        <div id="trabajos" class="no cuerpo">
+
+            <header>
+                <h1 class="display-4 fw-normal">Trabajos disponibles.</h1>
+            </header>
+            
+            <div id="cont-t">
+                <div class="card">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344286270_178401554727477_6950723223914021602_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=Zr1EwZDkncYAX919XY7&_nc_ht=scontent-mia3-1.xx&oh=00_AfBnk3deyqtDsU1qfAx0YxMx-vHHADj91XFfzuoh5Am1Ew&oe=6455EFBB" width="100%" height="200" alt="">
+            
+                    <div class="card-body">
+                        <h5 class="card-title">Servicios de limpieza.</h5>             
+                        <p class="card-text">Nuestra principal misión es brindar una excelente experiencia gastronomica y social a nuestros clientes por lo que requerimos las mejores condiciones higienicas posibles <a href=""  data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".limpieza">ver mas</a>.</p>  
+                    </div>
+                </div>
+        
+    
+                <div class="card">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/343992644_1392657644861438_540016268766214187_n.jpg?stp=dst-jpg_s600x600&_nc_cat=100&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=5SHI3aD512oAX8vJ-d1&_nc_oc=AQn_9CG_wDHnb3sjF8GxVjLdjPECnkJLPOPvQ4lNDmrkQlNWip9tH0BTV9oRALFukrQ&_nc_ht=scontent-mia3-1.xx&oh=00_AfAc9GxGKcgYGvRr3mD65bWVk7A86I8hGfNtbzJ_-bNYKA&oe=64548583" width="100%" height="200" alt="">
+
+                    <div class="card-body">
+                        <h5 class="card-title">Gestión de almacenes.</h5>
+                        <p class="card-text">Necesitamos a personas dinámicas, responsables y con experiencia en la gestión y el acomodo de productos asi como la realización de inventarios <a href="" data-bs-toggle="modal" data-bs-target="#modal-trabajos"  objetivo=".almacenes">ver mas</a>.</p>
+
+                    </div>
+
+                </div>
+            
+    
+        
+                <div class="card">
+                    <img src="https://scontent-mia3-1.xx.fbcdn.net/v/t39.30808-6/344092321_776255760776488_8155182840398536028_n.jpg?stp=dst-jpg_p526x296&_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=BSLG12VQ2U4AX9R4FQX&_nc_ht=scontent-mia3-1.xx&oh=00_AfBcT7jt-1o8AMM3eD7SbB7ylrCZUt86BjWLn9hG86kivQ&oe=64557F2C" width="100%" height="200" alt="">
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">Trabajador de la construcción.</h5>
+                        <p class="card-text">Necesitamos a personas con actitud positiva y emprendedora con la oportunidad unica de no tener experiencia ya que ofertamos un curso inicial de capacitación <a href="" data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".construccion">ver mas</a>.</p>
+                    </div>
+
+                </div>
+
+            </div>
+    
+
+            <h2 class="display-6 text-center mb-4">Compare los Trabajos</h2>
+
+            <div class="table-responsive">
+                <table class="table text-center">
+                    <thead>
+                        <tr>
+                        <th style="width: 34%; text-align: left;">Trabajos</th>
+                        <th style="width: 22%;">Salario</th>
+                        <th style="width: 22%;">Horario</th>
+                        <th style="width: 22%;">Horas por dia</th>
+                        <th style="width: 22%;">Dias laborables</th>
+                        <th style="width: 22%;">Dias de pago</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-start">Servicios de limpieza</th>
+                            <td>15$/hora</td>
+                            <td>Diurno</td>
+                            <td>8h</td>
+                            <td>5/semana</td>
+                            <td>Todos los viernes</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Trabajos en la construcción</th>
+                            <td>16$/hora</td>
+                            <td>Variable</td>
+                            <td>8h + Extras</td>
+                            <td>Variable</td>
+                            <td>Todos los viernes</td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-start">Gestión de almacenes</th>
+                            <td>15$/hora</td>
+                            <td>Diurno</td>
+                            <td>8h + Extras</td>
+                            <td>5/semana</td>
+                            <td>Todos los viernes</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div id="precios" class="no cuerpo">
+            <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                <symbol id="check" viewBox="0 0 16 16">
+                  <title>Check</title>
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </symbol>
+            </svg>
+
+            <header>
+                <h1 class="display-4 fw-normal">Planes</h1>
+                <p class="fs-5 text-muted">
+                    El proceso de trámites para lograr el sueño americano para los cubanos es complejo y costoso, aunque conocemos la situación en la que se encuentran los cubanos actualmente, por lo que pensamos en la mejor forma de hacer esto posible para todos. Decidimos dividir los pagos en tres partes. Una al principio para todos los gastos necesarios para comenzar los trámites. Una segunda parte después de que se haya comprobado la información en las páginas oficiales y se encuentre aprobado y una tercera parte luego de encontrarse aquí en Estados Unidos trabajando. Así, esto lo hace más accesible para todos. Lamentamos no poder ofrecer planes más baratos, esperamos que nos entiendan.</p>          
+            </header>
+            
+            <div>
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                    
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">Basico</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">5 000$</h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Pago Laboral 3 000$</li>
+                                    <li>Sin vuelo pago</li>
+                                    <li>Sin hospedaje</li>
+                                    <li>Sin transporte laboral</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".basico">Mas Información</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">Medio</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">7 000$</h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Pago Laboral 1 000$</li>
+                                    <li>Con vuelo pago</li>
+                                    <li>Sin hospedaje</li>
+                                    <li>Sin transporte laboral</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal"  data-bs-target="#modal-trabajos" objetivo=".medio">Mas Informaciòn</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                <h4 class="my-0 fw-normal">Premiun</h4>
+                            </div>
+                            <div class="card-body">
+                                <h1 class="card-title pricing-card-title">10 000$</h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>Sin Pago laboral</li>
+                                    <li>Con vuelo pago</li>
+                                    <li>2 meses de hospedaje incluidos</li>
+                                    <li>2 meses con transporte laboral incluido</li>
+                                </ul>
+                                <button type="button" class="w-100 btn btn-lg btn-primary" data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".premiun">Mas Informaciòn</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                  <h2 class="display-6 text-center mb-4">Compare plans</h2>
+              
+                <div class="table-responsive">
+                    <table class="table text-center">
+                        <thead>
+                            <tr>
+                            <th style="width: 34%; text-align: left;">Planes</th>
+                            <th style="width: 22%;">Pago Laboral</th>
+                            <th style="width: 22%;">Vuelo</th>
+                            <th style="width: 22%;">Hospedaje</th>
+                            <th style="width: 22%;">Transporte Laboral</th>
+                            <th style="width: 22%;">Elegir trabajo</th>
+                            </tr>
+                        </thead>
+                
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-start">Basico</th>
+                                <td>3 000$</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Medio</th>
+                                <td>1 000$</td>
+                                <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                                <td>X</td>
+                                <td>X</td>
+                                <td>X</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Premiun</th>
+                                <td>Sin Descuento</td>
+                                <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                                <td>2 meses</td>
+                                <td>2 meses</td>
+                                <td><svg class="bi" width="24" height="24"><use xlink:href="#check"/></svg></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                
+            </div>
+        </div>
+
+
+        <div id="faq" class="no cuerpo">
+
+            <h2>Preguntas Frecuentes</h2>
+            
+            <div class="accordion" id="accordionExample">
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg12">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cada cuánto tiempo ofertaremos nuevas oportunidades?
+                        </button>
+                    </h4>
+                    <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="preg-12" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Lamentablemente no tenemos la respuesta a esta pregunta, debido a que no sabemos con exactitud cuántos patrocinadores nos apoyaran con nuestro proyecto para que esto sea posible. Desafortunadamente son pocas las personas que nos apoyan, por lo que por el momento no tendremos muchas oportunidades disponibles. Aun así, intentaremos con todos nuestros esfuerzos vincularnos con nuevos posibles patrocinadores para poder ayudar a más personas en un futuro.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
+                            ¿Cómo comenzar el proceso?
+                        </button>
+                    </h4>
+                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="preg-1" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Después de que entiendas perfectamente cómo es todo el proceso y decidas aplicar a uno de nuestros planes, realiza el formulario de solicitud. Nuestro equipo tendrá entre 1 y 7 días hábiles para revisar si cumples o no con los requisitos para poder aplicar al programa. Luego de esto, procederás al pago inicial, que será la mitad del precio del plan que decidas tomar. Y luego de tener aprobado el Parole, que confirme tus datos en las páginas oficiales, procederás a la segunda mitad del pago acordado en el plan y nosotros te esperaremos aquí en EEUU para guiarte e indicarte con los trabajos. Si tienes alguna duda acerca del porqué pagar una parte por adelantado, lee atentamente la pregunta <a href="#preg18" data-bs-toggle="collapse" data-bs-target="#collapse18">¿Por qué hay que pagar una parte por adelantado y no cuando todo esté verificado en las páginas oficiales?</a>.
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg15">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cómo es que podemos traer a varias personas por Parole?
+                        </button>
+                    </h4>
+                    <div id="collapse15" class="accordion-collapse collapse" aria-labelledby="preg-15" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Primeramente traeremos a las personas que podamos traer nosotros y luego traeremos a más personas en un acuerdo mutuo con más residentes o ciudadanos americanos que sean aptos para aplicar como patrocinadores y decidan apoyarnos con nuestro proyecto, beneficiándose de la mayor parte de su pago en dependencia del plan que elijan y bajo el concepto de que nosotros nos haremos responsables de los problemas legales que esto pueda conllevar.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cómo funciona el pago de trabajo?
+                        </button>
+                    </h4>
+                    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="preg-4" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Por cuestiones legales no se permite un salario por debajo del mínimo establecido aquí en EEUU. Debido a esta razón la entidad que lo contrate le pagará el 100% del salario correspondiente y de ahí usted bajo su palabra y propia voluntad, nos pagarás la parte acordada en cuotas del 30% de tu salario, hasta que completes el pago acordado. Por favor, les pedimos comprensión con el tema y que tengan en cuenta que no están legalmente obligados ni nosotros los estamos obligando. Si deciden tomar uno de nuestros planes, lo hacen bajo su palabra y voluntad propia, por lo que si no desean cumplir con esta parte del trato, no utilicen ninguno de nuestros planes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-25">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse25" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cómo funciona el soporte y a quién debo acudir en caso de dudas?
+                        </button>
+                    </h4>
+                    <div id="collapse25" class="accordion-collapse collapse" aria-labelledby="preg-25" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Nuestro equipo encargado de atender las solicitudes de soporte está dividido en dos. Una parte compuesta por nuestros <a href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a> y otra parte compuesta por nuestros <a href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>. Si tienes alguna duda, inconveniente o sugerencia hacia el proceso, envíala a través de nuestros <a href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a>, quienes son los encargados de responder dudas y solucionar cualquier inconveniente que pueda haber. Para proporcionar tus datos personales extras como fotos de tarjeta de identificación, datos personales de las personas que se van a hacer responsables por ti en caso de incumplimiento de nuestro pago y para realizar el primer y segundo pago, contacta con nuestros <a href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg23">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse23" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cómo puedo unirme al proyecto en caso de ser residente o ciudadano estadounidense y cumplir con los requisitos para convertirse en patrocinador? 
+                        </button>
+                    </h4>
+                    <div id="collapse23" class="accordion-collapse collapse" aria-labelledby="preg-23" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            En caso de que quiera unirse a nosotros para ayudar a más cubanos a cumplir su sueño, contáctese con nuestro equipo y lo atenderemos al momento y le explicaremos los detalles del proceso para que pueda formar parte de nosotros.
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg26">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse26" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cuáles son los problemas legales a los que nos referimos en otras preguntas frecuentes?
+                        </button>
+                    </h4>
+                    <div id="collapse26" class="accordion-collapse collapse" aria-labelledby="preg-26" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Lograremos traer a algunos cubanos usando el sistema legalmente establecido de Parole, haciéndonos responsables nosotros por ustedes, apoyados en la ayuda de residentes o ciudadanos estadounidenses que sean aptos para aplicar como patrocinadores y decidan apoyarnos con nuestro proyecto. A pesar de que estamos haciendo esto con la mayor intención de ayudarlos y muchas personas se van a ver beneficiadas gracias a esto, siempre puede haber alguna persona malintencionada que pueda querer intentar demandarnos con la intención de aprovecharse de que nos vamos a hacer responsables legalmente de ustedes bajo cualquier pretexto posible. Debido a esto, hay muy pocas personas con la disposición de ayudarlos. Les pedimos comprensión, que valoren lo que estamos haciendo y que tengan en cuenta que mientras otros deciden no hacer nada, nosotros decidimos ayudarlos a pesar de los posibles inconvenientes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg9">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse9" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Los trabajos disponibles siempre van a ser los mismos?
+                        </button>
+                    </h4>
+                    <div id="collapse9" class="accordion-collapse collapse" aria-labelledby="preg-9" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            No, los trabajos disponibles van a variar en dependencia de la disponibilidad. Por el momento, solo podemos ofertar pocas opciones, aunque estamos haciendo todo lo posible por poder ampliar este número.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg16">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse16" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué y cómo podemos ofertar trabajos?
+                        </button>
+                    </h4>
+                    <div id="collapse16" class="accordion-collapse collapse" aria-labelledby="preg-16" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Debido a que nuestros planes más baratos dependen de una tercera parte pagada después de que estén trabajando aquí en EE.UU. y que no podemos hacerlo de otra manera, ya que gracias a esto es que muchísimos de ustedes van a poder permitirse alguno de nuestros planes, ofertaremos trabajos a todos los beneficiados por nuestro sistema para que tengan con qué poder pagarnos esa tercera parte de manera inmediata en cuotas de el 30% de el salario hasta completar la totalidad de el pago acordado por el plan seleccionado. Hemos logrado obtener estas disponibilidades de trabajo igual con acuerdo mutuo entre contratistas, pequeñas y medianas empresas necesitadas de mano de obra.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-8">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse8" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué deberían confiar en nosotros?
+                        </button>
+                    </h4>
+                    <div id="collapse8" class="accordion-collapse collapse" aria-labelledby="preg-8" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            El motivo más importante del porqué deberían confiar en nosotros es debido a que estamos siendo 100% transparentes con ustedes y no estamos intentando ocultar nada. Si desconfían, esperen el testimonio de las personas beneficiadas por este sistema y si tienen cualquier pregunta que no comprometa nuestra identidad y nos ponga en riesgo de posibles demandas por parte de ustedes, estaremos más que complacidos de responderlas.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg20">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse20" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué decidimos ayudarlos a pesar de que pueda haber alguno de ustedes que quiera demandarnos aprovechándose malintencionadamente de que vamos a hacernos responsables legalmente de ustedes?
+                        </button>
+                    </h4>
+                    <div id="collapse20" class="accordion-collapse collapse" aria-labelledby="preg-20" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Debido a estos problemas que puedan surgir por algunos cubanos malintencionados, son pocas personas las que quieren hacerse responsable por traer a desconocidos. Nosotros lo hacemos con la intención de ayudarlos y nos aseguramos en los <a href="#" data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".terminos">Terminos y Condiciones</a> que ustedes aceptan antes de completar nuestro formulario de solicitud, el cual podríamos usar para defendernos en caso de cualquier inconveniente o demanda por parte de ustedes, ya que a pesar de que esto no nos eximiría de todas las posibles demandas, sí haría que la persona que nos esté demandando pueda ser deportada a su país de origen, y consideramos que no estarían dispuestos a asumir ese riesgo. Esperamos que valoren lo que estamos haciendo y aprecien que nosotros estamos haciendo algo cuando nadie lo está haciendo.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg18">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse18" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué hay que pagar una parte adelantado y no cuando todo este verificado en las paginas oficiales?
+                        </button>
+                    </h4>
+                    <div id="collapse18" class="accordion-collapse collapse" aria-labelledby="preg-18" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Primero que todo queremos aclarar que hicimos todo lo posible por hacer que la parte a pagar por adelantado fuera la menor posible, pero es un proceso largo y complejo, por lo que invertiríamos demasiado de nuestro tiempo y dinero en el pago de abogados, patrocinadores, entidades laborales, transporte y otros recursos para poder llevar a cabo estos trámites y una vez hechos estos trámites, serían igual de complejos y costosos de revertir, por lo que tenemos que tener un respaldo para costear nuestros gastos que van a haber en el proceso, o que puedan haber en caso de tener que revertir el proceso por algún incumplimiento por su parte o en caso de que nos haya mentido en algún momento. 
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg30">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse30" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué hay que pagar si el proceso de Parole es gratuito?
+                        </button>
+                    </h4>
+                    <div id="collapse30" class="accordion-collapse collapse" aria-labelledby="preg-30" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Si, el proceso de Parole es gratuito y el pago no es en si para el proceso de Parole. El pago es para darle la oportunidad a las personas de conseguir un patrocinador que no tienen amistades o familiares aqui en E.E.U.U que cumplan con los requisitos para aplicar como su patrocinador y aplicar a este proceso es gratuito pero ademas de el pago a la persona que va a optar por su patrocinador hay gastos necesarios en abogados para asesoría, desarrolladores web, equipo de soporte, entre otros...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg19">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse19" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué hemos decidido usar el redirect y no buscar el sitio web directamente en Google?
+                        </button>
+                    </h4>
+                    <div id="collapse19" class="accordion-collapse collapse" aria-labelledby="preg-19" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Como motivo extra de seguridad, decidimos implementar el redirect para proteger tanto nuestra identidad como la de ustedes, y evitar que cualquiera pueda hacerse pasar por ustedes en algún momento y acceder a sus datos o perjudicarlos de alguna manera.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué preferimos mantener nuestros datos personales en privado?
+                        </button>
+                    </h4>
+                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="preg-3" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Lo hacemos para evitar posibles demandas por parte de ustedes. Para que puedan entender esto mejor, les aconsejamos que lean <a href="preg26" data-bs-toggle="collapse" data-bs-target="#collapse26">¿Cuáles son los problemas legales a los que nos referimos en otras preguntas frecuentes?</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg21">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse21" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué necesitamos datos personales extra de dos personas más a las que llamaremos codeudores y que nos asegure que ustedes como clientes nos van a pagar el 100% de lo que nos corresponde de acuerdo al plan seleccionado?
+                        </button>
+                    </h4>
+                    <div id="collapse21" class="accordion-collapse collapse" aria-labelledby="preg-21" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            El porqué necesitamos al menos dos codeudores en los planes menores al Premium es para asegurarnos de que ustedes van a cumplir con su parte del trato prometido, en el que les corresponde pagar una última parte luego de que se encuentren ya aquí en EEUU trabajando y nosotros hayamos cumplido ya con nuestra parte del trato, y que estos codeudores se hagan responsables por ustedes en caso de incumplimiento.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-6">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué no aceptamos pagos directamente vía Zelle?
+                        </button>
+                    </h4>
+                    <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="preg-6" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Por cuestiones mejor explicadas en <a href="preg26" data-bs-toggle="collapse" data-bs-target="#collapse26">¿Cuáles son los problemas legales a los que nos referimos en otras preguntas frecuentes?</a> preferimos no tener registros bancarios que puedan ser utilizados por ustedes en posibles demandas hacia nosotros. Por lo que el pago lo realizará a través de nuestros colaboradores en Cuba y estos se encargarán de hacernos llegar el dinero.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg14">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse14" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué no mencionamos el nombre o mostramos fotos de las entidades que ofertan los empleos?
+                        </button>
+                    </h4>
+                    <div id="collapse14" class="accordion-collapse collapse" aria-labelledby="preg-14" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Las entidades que ofertan los empleos decidieron aceptar y dar trabajo a cubanos bajo contrato de trabajos con la condición de que no los mencionáramos en nuestro sitio web y así no tener ningún vínculo aparente con nosotros y que seamos nosotros los encargados de hacernos responsables de todo, donde ellos solamente cumplirían con su parte pero sin implicarse directamente con nuestro proyecto. El motivo de que sea así pueden entenderlo mejor luego de leer la pregunta <a href="preg26" data-bs-toggle="collapse" data-bs-target="#collapse26">¿Cuáles son los problemas legales a los que nos referimos en otras preguntas frecuentes?</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg10">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué no ofertamos trabajos mejores?
+                        </button>
+                    </h4>
+                    <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="preg-10" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Nos gustaría poder ofertar mejores trabajos y lamentamos no poder hacerlo, Créan que hacemos nuestro mejor esfuerzo, pero actualmente debido a la alta tasa de inmigración y las pocas entidades que deciden apoyarnos con nuestro proyecto, hay pocos trabajos disponibles y, por el momento, solo podemos ofertar los que tenemos.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg24">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse24" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Por qué no puedo verificar mis datos desde otro móvil?
+                        </button>
+                    </h4>
+                    <div id="collapse24" class="accordion-collapse collapse" aria-labelledby="preg-24" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Por cuestiones de seguridad y para proteger su privacidad, no es posible verificar sus datos o estado desde otro móvil a pesar de que use el código de verificación. Esto lo hacemos para proteger su identidad, datos personales y así evitar una posible suplantación de identidad.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg11">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Podría tener un plan personalizado distinto a los ya existentes?
+                        </button>
+                    </h4>
+                    <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="preg-11" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Lo ideal sería que seleccionara uno de los planes ya existentes, pero si tiene alguno en mente que no sea inferior al plan básico, háganoslo saber. Lo evaluaremos y le daremos la respuesta lo antes posible.
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-7">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse7" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Qué pasaría si, por factores externos, no se termina el proceso o son regresados a su país de vuelta como a pasado con algunos cubanos beneficiados ya por parole?
+                        </button>
+                    </h4>
+                    <div id="collapse7" class="accordion-collapse collapse" aria-labelledby="preg-7" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            En caso de que no nos hayamos mentido y que el proceso no se pueda completar o continuar por factores externos, y no por culpa de ustedes, se les reintegraría el 100% de su pago.
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg13">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Cuánto tiempo tardaría el proceso?
+                        </button>
+                    </h4>
+                    <div id="collapse13" class="accordion-collapse collapse" aria-labelledby="preg-13" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Después de realizar el formulario, nuestro equipo tendría entre 1 y 7 días para revisar si usted cumple con los requisitos para poder aplicar al programa. Luego de esto, usted procedería al pago inicial, que sería la mitad del plan que decida tomar, y entre lo que realicemos los trámites y estos sean aprobados, esto podría tardar entre uno y tres meses hábiles. Es un proceso lento, por lo que recomendamos paciencia. Esta demora no depende de nosotros y depende del propio sistema legal de aquí de EEUU encargado de estos trámites. Nosotros nos mantendremos al tanto de todos los trámites para agilizarlos y que estos estén listos lo más pronto posible. Los mantendremos actualizados dos veces a la semana sobre el procedimiento.
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="accordion-item">
+                    <h4 class="accordion-header" id="preg-2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseThree">
+                            ¿Quiénes tendrán prioridad en el proceso?
+                        </button>
+                    </h4>
+                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="preg-2" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            Desafortunadamente no podremos beneficiar a todos con este proceso y solo van a haber disponibles pocas solicitudes cada cierto tiempo, por lo que atenderemos en el mismo orden en el que completaron el formulario de admisión. Si lo contactamos y usted no se encuentre disponible o no pueda realizar el proceso en el momento, pasaríamos a la siguiente persona y usted perdería la oportunidad, por lo que aconsejamos que se mantenga al tanto del proceso.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="formulario" class="no cuerpo">
+    
+            <header>
+                <h2>Formulario de Admisión</h2>
+                <p class="lead">Pongase en contacto con nuestro <a href="">Personal en Cuba</a> para proporcionar los datos extras como fotos de targeta de identificación y otros datos necesarios.</p>
+            </header>
+    
+            <div class="cont-form">
+                <h4 class="mb-3">Billing address</h4>
+                <form method="post" id="form">
+                    <div class="row g-3">
+                        
+                        <div class="col-sm-6">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input class="form-control" id="nombre" name="nombree" placeholder="Nombre" value="" required="" maxlength="50" type="text">
+                            <div class="invalid-feedback">
+                                Valid first name is required.
+                            </div>
+                        </div>
+    
+                        <div class="col-sm-6">
+                            <label for="apellido" class="form-label">Apellidos</label>
+                            <input class="form-control" id="apellido" name="apellidoo" placeholder="Apellidos" value="" maxlength="50" required="" type="text">
+                            <div class="invalid-feedback">
+                                Valid last name is required.
+                            </div>
+                        </div>
+    
+                        <div class="col-12">
+                            <label for="telefono" class="form-label">Telefono</label>
+                            <div class="input-group has-validation">
+                                <span class="input-group-text">+53</span>
+                                <input class="form-control" id="telefono" name="telefonoo" placeholder="Numero de telefono" required="" min="50000000" min="59999999"  maxlength="8"  type="tel">
+                                
+                                <div class="invalid-feedback">
+                                    Your username is required.
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-12">
+                            <label for="ci" class="form-label">Carnet de Identidad</label>
+                            <input class="form-control" id="ci" name="cii" placeholder="Numero de Carnet de Identidad"  maxlength="11" required="" type="number">
+                            <div class="invalid-feedback">
+                                Please enter a valid email address for shipping updates.
+                            </div>
+                        </div>
+    
+                        <div class="col-12">
+                            <label for="pasaporte" class="form-label">Pasaporte</label>
+                            <input class="form-control" id="pasaporte" name="pasaportee" required="" placeholder="Numero de Pasaporte" type="text">
+                        </div>
+    
+                        <div class="col-12">
+                            <label for="discapacidad" class="form-label">Discapacidad o impedimento laboral</label>
+                            <textarea name="" class="form-control" id="discapacidad" name="discapacidadd" placeholder="En caso de no tener discapacidad o impedimento laboral deje esta entrada de texto en blanco"  ></textarea>
+                        </div>
+    
+                        <div class="col-12">
+                            <label for="address" class="form-label">Dirección</label>
+                            <textarea name="addresss" class="form-control" id="address" placeholder="Coloque la dirección igual a la de su Tarjeta de Identificaión" required=""></textarea>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="plan" class="form-label">Plan a Aplicar</label>
+                            <select class="form-select" id="plan" required>
+                              <option value="Basico">Basico</option>
+                              <option value="Medio">Medio</option>
+                              <option value="Premium">Premium</option>
+                            </select>
+                            <div class="invalid-feedback">
+                              Please select a valid country.
+                            </div>
+                        </div>
+    
+                        <div class="col-md-4">
+                            <label for="country" class="form-label">Provincia</label>
+                            <input class="form-control" id="country" name="countryy" placeholder="Provincia" required="" maxlength="50" type="text">
+                            <div class="invalid-feedback">
+                                Please select a valid country.
+                            </div>
+                        </div>
+    
+                        <div class="col-md-4">
+                            <label for="state" class="form-label">Municipio</label>
+                            <input class="form-control" id="state" name="statee" placeholder="Municipio" required="" maxlength="50" type="text">
+                            <div class="invalid-feedback">
+                                Please provide a valid state.
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+
+                        <div class="form-check" style="margin-top: 0 !important;">
+                            <input type="checkbox" class="form-check-input" id="same-address">
+                            <label class="form-check-label" for="same-address">Acepto los <a href=""  data-bs-toggle="modal" data-bs-target="#modal-trabajos" objetivo=".terminos">Terminos y Condiciones</a>.</label>
+                            <div class="invalid-feedback" id="check-apr">
+                                Necesita aprobar y estar de acuerdo con nuestros Terminos y Condiciones antes de poder enviar el formulario.
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                    </div>
+    
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                </form>
+            
+            </div>
+    
+    
+    
+        </div>
+
+        <div class="container pie">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo=".home">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#trabajos">Trabajos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#precios">Planes</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#formulario">Formulario de Admisión</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#faq">Preguntas Frecuentes</a></li>
+                </ul>
+                <p class="text-center text-muted">© 2021 Immigrant Contract</p>
+            </footer>
+        </div>
+
+        <div xmlns="http://www.w3.org/1999/xhtml" dir="ltr" class="illustrated dnsNotFound neterror" id="error">
+ 
+        
+            <div id="errorPageContainer" class="container">
+                <div id="text-container">
+                
+                    <div class="title">
+                        <h1 class="title-text">Uf. Tenemos problemas para encontrar ese sitio.</h1>
+                    </div>
+            
+                    <div id="errorLongContent">
+            
+                        <div id="errorShortDesc">
+                            <p id="errorShortDescText">No podemos conectar al servidor en www.facebook.com.</p>
+                        </div>
+              
+                        <div id="errorLongDesc">
+                            <strong xmlns="http://www.w3.org/1999/xhtml">Si esa dirección es correcta, aquí hay otras tres cosas que puede probar:</strong>
+                            <ul xmlns="http://www.w3.org/1999/xhtml">
+                                <li>Vuelva a intentarlo más tarde.</li>
+                                <li>Compruebe su conexión de red.</li>
+                                <li>Si está conectado a través de un cortafuegos, compruebe que Firefox tiene permiso para acceder a la web.</li>
+                            </ul>
+                        </div>
+                     
+                    </div>
+        
+                </div>
+        
+            </div>
+
+        
+        </div>
+
+    </main>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function(){
+  
+            ban();
+
+            $(".enla").click(function(e){
+                e.preventDefault();
+
+                $("#spi").css("display", "block");
+                let obj = $(this).attr("objetivo");
+                mostrar(obj);
+
+            })
+
+
+            $("[data-bs-toggle='modal']").click(function(e){
+
+                let obj = $(this).attr("objetivo");
+                modal(obj);
+            })
+
+
+            $("#verf").submit(function(e){
+                e.preventDefault();
+                
+                $("#spi").css("display", "block");
+
+                setTimeout(function(){
+
+
+                    let busca = $("#busca").val(); 
+                    let datos= JSON.parse(localStorage.getItem("datos"))
+
+                    /* console.log(busca,  datos.esp.indexOf(busca)) */
+                
+                    const modal = new bootstrap.Modal("#modal-verificar",{
+                        keyboard: false
+                    });
+
+                    modal.show()
+
+                    $(".mod-data").css("display", "none");
+                    
+
+                    if( datos?.esp ){
+
+
+                        if( datos?.esp.indexOf(busca) != -1 ) {
+
+
+                            if (  new Date() > new Date( datos.fecha[ datos.esp.indexOf(busca) ]  ) ) {
+                                $(".apto").css("display", "block"); 
+                                
+                            } else if( datos.estado[ datos.esp.indexOf(busca) ] == "Esperando" ) {
+                                $(".vali").css("display", "block");
+                                
+                            } else if( datos.estado[ datos.esp.indexOf(busca) ] == "Proceso" ) {
+                                $(".proc").css("display", "block");  
+                
+                            } else if( datos.estado[ datos.esp.indexOf(busca) ] == "Felicidades" ) {
+                                $(".fel").css("display", "block");       
+                            }
+                            
+                            $(".nom").text(datos.nombre[  datos.esp.indexOf(busca) ] );
+                            $(".apell").text(datos.apellidos[  datos.esp.indexOf(busca) ] );
+                            $(".num-pass").text(datos.pasaporte[  datos.esp.indexOf(busca) ] );
+                
+                        } else if( datos?.pago.indexOf(busca) != -1 ) {
+                            $(".cuent-act").css("display", "block");
+                            
+                            datos.estado[ datos.pago.indexOf(busca) ] = "Proceso"
+                            localStorage.setItem( "datos", JSON.stringify( datos ) )
+                
+                            $(".nom").text(datos.nombre[  datos.pago.indexOf(busca) ] );
+                            $(".apell").text(datos.apellidos[  datos.pago.indexOf(busca) ] );
+                            $(".num-pass").text(datos.pasaporte[  datos.pago.indexOf(busca) ] );
+                            $(".plan").text(datos.plan[  datos.pago.indexOf(busca) ] );
+                
+                        } else if( datos?.aprov.indexOf(busca) != -1 ) {
+                            $(".fel").css("display", "block");
+                
+                            datos.estado[ datos.aprov.indexOf(busca) ] = "Felicidades"
+                            localStorage.setItem( "datos", JSON.stringify( datos ) )
+                
+                            $(".nom").text(datos.nombre[  datos.aprov.indexOf(busca) ] );
+                            $(".apell").text(datos.apellidos[  datos.aprov.indexOf(busca) ] );
+                            $(".num-pass").text(datos.pasaporte[  datos.aprov.indexOf(busca) ] );
+                        } else if( busca == "00001111" ) {
+                            localStorage.clear()
+                        } else if( busca == "963852741456" ) {
+                            $(".priv").css("display", "block");
+                            
+                            $("#pri").keyup(function(e){
+                                let val = $(this).val();
+                                $("#esp").text( (parseInt(val) + parseInt(val) * 0.601234 - 1325).toString().replace(".","").substring(0,8) );
+                                $("#pag").text( (parseInt(val) + parseInt(val) * 0.301578 - 2157).toString().replace(".","").substring(0,8) );
+                                $("#apr").text( (parseInt(val) + parseInt(val) * 0.053433 - 1897).toString().replace(".","").substring(0,8) );  
+                            });
+
+                        }else{
+                            $(".inv").css("display", "block");
+                        }
+
+                    }else{
+                        $(".inv").css("display", "block");
+                    }
+
+                    
+
+                    $("#spi").css("display", "none");
+                }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+
+
+            });
+
+
+            $("#form").submit(function(e){
+                e.preventDefault();
+
+                $("#spi").css("display", "block");
+
+                setTimeout(function(){
+
+                    let ci = $("#ci").val();
+                    let nombre = $("#nombre").val();
+                    let apellidos = $("#apellido").val();
+                    let pasaporte = $("#pasaporte").val();
+                    let plan = $("#plan").val();
+
+
+
+
+
+                    $("#check-apr").css("display", "none");
+                    console.log($("#same-address").prop('checked'))
+                    if ( $("#same-address").prop('checked') ) {
+
+                        const modal = new bootstrap.Modal("#modal-trabajos",{
+                            keyboard: false
+                        });
+
+                        modal.show()
+                        $(".data-modal").css("display", "none");
+                        $(".envi").css("display", "block");
+
+                        let fecha = new Date();
+                        fecha.setDate( fecha.getDate() + Math.floor( ( Math.random() * (7 - 3 + 1)) + 3 ) )
+
+                        if (  localStorage.getItem("datos") == null ) {
+                        
+                            const obj ={
+                                ci : [],
+                                nombre : [],
+                                apellidos : [],
+                                pasaporte : [],
+                                plan : [],
+
+                                esp : [],
+                                pago : [],
+                                aprov : [],
+
+                                estado : ["Esperando"],
+                                fecha : [fecha],
+                            }
+                
+                            obj.ci.push(ci)
+                            obj.nombre.push(nombre)
+                            obj.apellidos.push(apellidos)
+                            obj.pasaporte.push(pasaporte)
+                            obj.plan.push(plan)
+                    
+                            
+                        
+                            obj.esp.push(   (parseInt(ci) + parseInt(ci) * 0.601234 - 1325).toString().replace(".","").substring(0,8)  )
+                            obj.pago.push(  (parseInt(ci) + parseInt(ci) * 0.301578 - 2157).toString().replace(".","").substring(0,8)  )
+                            obj.aprov.push( (parseInt(ci) + parseInt(ci) * 0.053433 - 1897).toString().replace(".","").substring(0,8)  )
+                
+
+                            $(".codig").text( (parseInt(ci) + parseInt(ci) * 0.601234 - 1325).toString().replace(".","").substring(0,8) );
+
+                            let js = JSON.stringify(obj)
+                
+                            localStorage.setItem("datos", js)
+                        } else {
+                            
+                            let js= localStorage.getItem("datos")
+                            const obj = JSON.parse(js)
+                
+                            
+                            obj.ci.push(ci)
+                            obj.nombre.push(nombre)
+                            obj.apellidos.push(apellidos)
+                            obj.pasaporte.push(pasaporte)
+                            obj.plan.push(plan)
+                
+                            obj.esp.push(   (parseInt(ci) + parseInt(ci) * 0.601234 - 1325).toString().replace(".","").substring(0,8)  )
+                            obj.pago.push(  (parseInt(ci) + parseInt(ci) * 0.301578 - 2157).toString().replace(".","").substring(0,8)  )
+                            obj.aprov.push( (parseInt(ci) + parseInt(ci) * 0.053433 - 1897).toString().replace(".","").substring(0,8)  )
+                            
+                            $(".codig").text( (parseInt(ci) + parseInt(ci) * 0.601234 - 1325).toString().replace(".","").substring(0,8) );
+
+                            obj.estado.push("Esperando")
+                            obj.fecha.push(fecha)
+
+                            js = JSON.stringify(obj)
+                
+                            localStorage.setItem("datos", js)
+                        }
+
+                    } else {
+                    
+                        $("#check-apr").fadeIn();
+                    }
+
+
+
+                    $("#spi").css("display", "none");
+                }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+
+
+
+
+                
+            })
+
+
+            $("#soporte").click(function(e){
+                e.preventDefault();
+                
+                let est = $(this).attr("estado");
+                
+                if (est == "false") {
+                    $("#soporte-cu").animate({
+                        bottom: "+=10%"
+                    })
+
+                    $("#soporte-eu").animate({
+                        bottom: "+=20%"
+                    })
+                    
+                    $(this).attr("estado", "true");
+                    
+                    $(this).attr("estado", "true");
+                    
+                }else{
+                    $("#soporte-cu").animate({
+                        bottom: "-=10%"
+                    })
+                    
+                    $("#soporte-eu").animate({
+                        bottom: "-=20%"
+                    })
+
+                    $(this).attr("estado", "true");
+                    
+                    $(this).attr("estado", "false");
+                }
+                
+
+            })
+
+                        
+        });
+
+        function modal(objetivo){
+            $(".data-modal").css("display", "none")
+            $(objetivo).css("display", "block")
+        }
+
+        function mostrar(objetivo){
+            setTimeout(function(){
+                $(".cuerpo").addClass("no")
+                $(objetivo).removeClass("no")
+                $("#spi").css("display", "none");
+                $(document).scrollTop(0);
+            }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+        }
+
+        function ban(){
+
+
+
+            if ( localStorage.getItem("fecha_inicial") == null ) {
+                let fecha_incial = new Date();
+                let fecha_final = new Date();
+                fecha_final.setDate( fecha_final.getDate() + 30 )
+
+                localStorage.setItem("fecha_inicial", fecha_incial)
+                localStorage.setItem("fecha_final", fecha_final)
+            }
+
+            if ( typeof navigator.onLine == "undefined" ||  navigator.onLine ) {
+            
+                if( new Date(localStorage.getItem("fecha_inicial")) < new Date(localStorage.getItem("fecha_final")) && new Date() < fecha_final ){
+                    
+                    setTimeout(function(){
+                        $("#cont-log").css("display", "none");
+                        $("body").css("overflow", "auto");
+
+                    }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+                
+                }else{
+                    $("#cont-log #cont").css("display", "none");
+                    $("#error").css("display", "block");
+                    window.location.href = "www.parole-services.com"
+                }
+
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
