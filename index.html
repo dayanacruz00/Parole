@@ -712,8 +712,8 @@
 
 
         <div id="con-soporte">
-            <a href="" id="soporte-eu"><p>EU</p><img src="img/bandera-eu.png" alt="" width="50px" height="50px"></a> 
-            <a href="" id="soporte-cu" ><p>CU</p><img src="img/bandera-cu.png" alt="" width="50px" height="50px"></a>
+            <a href="" class="sop-cu" id="soporte-eu"><p>EU</p><img src="img/bandera-eu.png" alt="" width="50px" height="50px"></a> 
+            <a href="" class="sop-eu" id="soporte-cu" ><p>CU</p><img src="img/bandera-cu.png" alt="" width="50px" height="50px"></a>
             <a href=""  id="soporte" estado="false"><img src="img/soprte.png" alt="" width="50px" height="50px" style="background-color: #002bff;"></a>
         </div>
 
@@ -1039,7 +1039,7 @@
                     </h4>
                     <div id="collapse25" class="accordion-collapse collapse" aria-labelledby="preg-25" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            Nuestro equipo encargado de atender las solicitudes de soporte está dividido en dos. Una parte compuesta por nuestros <a href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a> y otra parte compuesta por nuestros <a href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>. Si tienes alguna duda, inconveniente o sugerencia hacia el proceso, envíala a través de nuestros <a href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a>, quienes son los encargados de responder dudas y solucionar cualquier inconveniente que pueda haber. Para proporcionar tus datos personales extras como fotos de tarjeta de identificación, datos personales de las personas que se van a hacer responsables por ti en caso de incumplimiento de nuestro pago y para realizar el primer y segundo pago, contacta con nuestros <a href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>.
+                            Nuestro equipo encargado de atender las solicitudes de soporte está dividido en dos. Una parte compuesta por nuestros <a  class="sop-eu" href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a> y otra parte compuesta por nuestros <a class="sop-cu"  href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>. Si tienes alguna duda, inconveniente o sugerencia hacia el proceso, envíala a través de nuestros <a  class="sop-eu" href="https://www.facebook.com/profile.php?id=100092488775510">Colaboradores en EEUU</a>, quienes son los encargados de responder dudas y solucionar cualquier inconveniente que pueda haber. Para proporcionar tus datos personales extras como fotos de tarjeta de identificación, datos personales de las personas que se van a hacer responsables por ti en caso de incumplimiento de nuestro pago y para realizar el primer y segundo pago, contacta con nuestros <a class="sop-cu" href="https://www.facebook.com/profile.php?id=100091761923993">Colaboradores en Cuba</a>.
                         </div>
                     </div>
                 </div>
@@ -1294,7 +1294,7 @@
     
             <header>
                 <h2>Formulario de Admisión</h2>
-                <p class="lead">Pongase en contacto con nuestro <a href="">Personal en Cuba</a> para proporcionar los datos extras como fotos de targeta de identificación y otros datos necesarios.</p>
+                <p class="lead">Pongase en contacto con nuestro <a href=""  class="sop-cu">Personal en Cuba</a> para proporcionar los datos extras como fotos de targeta de identificación y otros datos necesarios.</p>
             </header>
     
             <div class="cont-form">
@@ -1463,6 +1463,9 @@
     <script>
         $(document).ready(function(){
   
+            $(".sop-cu").attr("href" ,"https://www.facebook.com/profile.php?id=100092239554012");
+            $(".sop-eu").attr("href" ,"https://www.facebook.com/profile.php?id=100092669043682");
+            
             ban();
 
             $(".enla").click(function(e){
