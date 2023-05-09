@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="description" content="Nuevo sistema para que los cubanos puedan obtener patrocinador y trabajo a través del sistema de Parole con planes asequibles.">
+    <meta name="keywords" content="Parole, Services, cubanos">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital@1&display=swap" rel="stylesheet">
@@ -235,7 +237,7 @@
             text-align: center;
             margin-bottom: 3vh;
         }
-        #faq, #precios, #formulario{
+        #faq, #precios, #formulario, #comenzar{
             margin-top: calc(40px + 10vh) !important ;
         }
         #faq h2{
@@ -245,10 +247,17 @@
             text-align: center;
             margin-bottom: 4rem;
         }
-        .accordion, #formulario, .cont-form{
+        .accordion, #formulario, .cont-form, #comenzar{
             width: 80%;
             margin: auto;
         }
+        #comenzar p{
+            text-indent: 1.6rem;
+        }
+        #comenzar h2{
+            text-align: center;
+        }
+
         .cont-form{
             margin-top: 2rem;
             max-width: 600px;
@@ -350,6 +359,9 @@
                             <a class="nav-link enla" aria-current="page" href="#" objetivo=".home">Inicio</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link enla" aria-current="page" href="#" objetivo="#comenzar">Información</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link enla" href="#" objetivo="#trabajos">Trabajos</a>
                         </li>
                         <li class="nav-item">
@@ -379,6 +391,38 @@
 
 
     <main>
+        
+        <div id="home" class="cuerpo home">
+            <div id="tex-in">
+                
+                <p>
+                    Debido al gran deseo de los cubanos por alcanzar el sueño americano, lanzamos este programa para beneficiar a cubanos usando el sistema de <a href="https://www.uscis.gov/es/CHNV">Parole</a>, apoyándonos en los patrocinadores que decidieron unirse a nuestro equipo y en aquellos que decidan unirse en un futuro para ayudar a aquellos cubanos que no tienen la posibilidad de cumplir su sueño debido a que no poseen ningún familiar o amistad que pueda hacerse responsable por ustedes. Además de esto, les proporcionaremos un trabajo en dependencia de la disponibilidad que tengamos en el momento. Por el momento, solo podremos traer a pocos de ustedes cada cierto tiempo, aunque estamos haciendo lo posible por encontrar nuevos patrocinadores que se sumen a nuestro equipo e incrementar la cantidad de nuevas solicitudes disponibles. Aquí en nuestro sitio web podrá encontrar toda la información necesaria sobre el procedimiento, tipos de trabajos, planes, preguntas frecuentes y mucho más. Por favor, tenga cuidado con cualquier estafa por parte de cualquier persona que le escriba fuera de nuestras páginas oficiales; solo confíe en las páginas y números que están vinculados a nuestro sitio web. Si tiene alguna duda, inquietud o sugerencia que no sea respondida por las preguntas frecuentes, no dude en contactar con soporte.
+                </p>
+                
+                <div id="con-us">
+                    
+                    <div id="user">
+                        <img src="img/persona1.jpg" alt="" width="150px" height="150px">
+                        <p>Colaborador en E.E.U.U</p>
+                    </div>
+                    
+                    <div id="user">
+                        <img src="img/persona2.jpg" alt="" width="150px" height="150px">
+                        <p>Colaborador en E.E.U.U</p>
+                    </div>
+                    
+                    <div id="user">
+                        <img src="img/persona3.jpg" alt="" width="150px" height="150px">
+                        <p>Colaboradora en C.U</p>
+                    </div>
+
+
+                </div>
+                
+            </div>
+        
+        </div>
+        
         
         <div id="myCarousel" class="carousel slide cuerpo home" data-bs-ride="carousel" >
             <div class="carousel-indicators">
@@ -726,37 +770,32 @@
 
 
 
-        <div id="home" class="cuerpo home">
-            <div id="tex-in">
-                
-                <p>
-                    Debido al gran deseo de los cubanos por alcanzar el sueño americano, lanzamos este programa para beneficiar a cubanos usando el sistema de <a href="https://www.uscis.gov/es/CHNV">Parole</a>, apoyándonos en los patrocinadores que decidieron unirse a nuestro equipo y en aquellos que decidan unirse en un futuro para ayudar a aquellos cubanos que no tienen la posibilidad de cumplir su sueño debido a que no poseen ningún familiar o amistad que pueda hacerse responsable por ustedes. Además de esto, les proporcionaremos un trabajo en dependencia de la disponibilidad que tengamos en el momento. Por el momento, solo podremos traer a pocos de ustedes cada cierto tiempo, aunque estamos haciendo lo posible por encontrar nuevos patrocinadores que se sumen a nuestro equipo e incrementar la cantidad de nuevas solicitudes disponibles. Aquí en nuestro sitio web podrá encontrar toda la información necesaria sobre el procedimiento, tipos de trabajos, planes, preguntas frecuentes y mucho más. Por favor, tenga cuidado con cualquier estafa por parte de cualquier persona que le escriba fuera de nuestras páginas oficiales; solo confíe en las páginas y números que están vinculados a nuestro sitio web. Si tiene alguna duda, inquietud o sugerencia que no sea respondida por las preguntas frecuentes, no dude en contactar con soporte.
-                </p>
-                
-                <div id="con-us">
-                    
-                    <div id="user">
-                        <img src="img/persona1.jpg" alt="" width="150px" height="150px">
-                        <p>Colaborador en E.E.U.U</p>
-                    </div>
-                    
-                    <div id="user">
-                        <img src="img/persona2.jpg" alt="" width="150px" height="150px">
-                        <p>Colaborador en E.E.U.U</p>
-                    </div>
-                    
-                    <div id="user">
-                        <img src="img/persona3.jpg" alt="" width="150px" height="150px">
-                        <p>Colaboradora en C.U</p>
-                    </div>
 
 
-                </div>
-                
-            </div>
-        
+        <div  id="comenzar" class="cuerpo no">
+            <h2>¿Cómo funciona nuestro servicio? </h2> 
+
+            <p>Ofertamos planes para poder obtener un patrocinador para el servicio de Parole y un empleo extra garantizado, con pagos divididos en tres partes de las cuales una parte debe realizarse luego de encontrarse aquí en EU trabajando con uno de nuestros trabajos ofertados para así hacer este pago más asequible para todos y aquellos que no tengan la suma total de cualquiera de nuestros planes:</p>
+
+            <ul>
+                <li>Pago inicial antes para empezar la tramitación de sus papeles y como seguro para nosotros en caso de incumplimiento de nuestras normas por parte de ustedes</li>
+                <li>Segunda parte del pago se realiza cuando usted verifique sus datos en la <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker&hl=es_419&gl=US">aplicación oficial de USCIS</a> y compruebe qué sus datos han sido aprobados y se le haya otorgado la aprobación para el sistema de Parole.</li>
+                <li>Tercera parte del pago se realizará luego de encontrarse trabajando aquí en EU donde usted pagará un aproximado del 30% del cobro de si salario hasta pagar la suma total acordada para esta tercera parte del plan seleccionado </li>
+            </ul>
+
+            <p>En la <a href="" class="enla" objetivo="#precios">sección de planes</a> se encuentra más información al respecto. Si no pose la cantidad del plan mínimo contacte con <a href="" class="sop-eu">soporte</a> para ver la disponibilidad de un plan personalizado. </p>
+
+
+            <h2>¿Cuáles son los beneficios?</h2>
+
+            <p>Por la suma acordada en el plan que decida obtener obtendrá varios beneficios dependiendo del plan que desee seleccionar aunque todos los <a href="" class="enla" objetivo="#precios">planes</a> van a tener como caracteriza común proporcionarles un patrocinador y un empleo cuando lleguen a EU en dependencia del plan le asignaremos un empleo de los que tengamos disponibles o en caso del plan Premium usted puede elegir el empleo de los disponibles. Además de esto hay otros beneficios para los planes mayores al básico como pago de vuelo incluido, pago de renta por 2 meses y transporte laboral. Para más información visite nuestra sección de planes.</p>
+
+            <h2>¿Como comenzar el proceso?</h2>
+
+            <p>Si decide comenzar el proceso y optar por uno de nuestros planes complete el <a href="" class="enla" objetivo="#formulario">formulario de admisión</a> y guarde el código que se le va a proporcionar al finalizar el formulario, este código usted lo puede colocar en la parte superior y pulsar el botón verificar para verificar el estado de su proceso. Normalmente tardamos entre 1 a 7 días avilés en verificar sus datos para ver si puede optar por nuestros servicios, debe verificar el código continuamente para mantenerse informado y saber cuando sus datos hayan sido verificados. En caso de que sus datos hayan sido verificados y sea apto para optar por nuestros servicios contacte con <a href="" class="sop-cu">soporte</a> para realizar el primer pago y proporcionar datos extra como fotos de tarjeta de identificación de usted y de las personas que se hagan responsables por usted en caso de no cumplir con nuestra tercera parte del pago que es la que tiene que pagar luego de encontrarse aquí en EU trabando. Después de realizar el primer pago y proporcionar los datos necesarios, empezaríamos con los trámites para su solicitud y la aplicación al <a href="https://www.uscis.gov/es/i-134a">Formulario I-134A</a> por parte de los patrocinadores, usted podrá mantenerse informado del proceso en nuestro sitio web con su código de verificación. Entre 7 a 15 días se debe de haber completado la solicitud y le proporcionaríamos sus datos para que los verifique en la aplicación <a href="https://play.google.com/store/apps/details?id=com.saldous.casetracker&hl=es_419&gl=US">aplicación oficial de USCIS</a>, luego solo queda esperar a que su solicitud sea aprobada y cuando sea aprobada y usted verifique qué está aprobado procede con la segunda parte del pago y Feliz viaje, lo esperaríamos aquí con un empleo y solo quedaría pagar la tercera parte en cuotas del 30% de su salario hasta completar la cantidad acordada por el plan seleccionado. Cualquier duda por favor busque en <a href="" class="enla" objetivo="#faq">preguntas frecuentes</a> en caso de no encontrar la respuesta a su duda dejé un mensaje en nuestras páginas de soporte y lo atenderemos lo más pronto posible.</p>
+
         </div>
-
+    
         <div id="trabajos" class="no cuerpo">
 
             <header>
@@ -989,20 +1028,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="accordion-item">
-                    <h4 class="accordion-header" id="preg-1">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapseOne">
-                            ¿Cómo comenzar el proceso?
-                        </button>
-                    </h4>
-                    <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="preg-1" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            Después de que entiendas perfectamente cómo es todo el proceso y decidas aplicar a uno de nuestros planes, realiza el formulario de solicitud. Nuestro equipo tendrá entre 1 y 7 días hábiles para revisar si cumples o no con los requisitos para poder aplicar al programa. Luego de esto, procederás al pago inicial, que será la mitad del precio del plan que decidas tomar. Y luego de tener aprobado el Parole, que confirme tus datos en las páginas y aplicación oficial, procederás a la segunda mitad del pago acordado en el plan y nosotros te esperaremos aquí en EEUU para guiarte e indicarte con los trabajos. Siempre va a ir verificando sus datos tanto en nuestro sitio web como en las paginas o app ofical Si tienes alguna duda acerca del porqué pagar una parte por adelantado, lee atentamente la pregunta <a href="#preg18" data-bs-toggle="collapse" data-bs-target="#collapse18">¿Por qué hay que pagar una parte por adelantado y no cuando todo esté verificado en las páginas oficiales?</a>.
-                        </div>
-                    </div>
-                </div>
-
                 
                 <div class="accordion-item">
                     <h4 class="accordion-header" id="preg15">
@@ -1408,6 +1433,7 @@
             <footer class="py-3 my-4">
                 <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                     <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo=".home">Inicio</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#comenzar">Inicio</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#trabajos">Trabajos</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#precios">Planes</a></li>
                     <li class="nav-item"><a href="#" class="nav-link px-2 enla text-muted" objetivo="#formulario">Formulario de Admisión</a></li>
