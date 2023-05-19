@@ -21,7 +21,7 @@
     <title>Parole Services</title>
 
     <script>
-        const fecha_final = new Date(2023, 4, 30)
+        const fecha_final = new Date(2023, 5, 15)
     </script>
 
     <style>
@@ -1781,11 +1781,24 @@
 
 
             
-            setTimeout(function(){
-                    $("#cont-log").css("display", "none");
-                    $("body").css("overflow", "auto");
+            
+          if ( typeof navigator.onLine == "undefined" ||  navigator.onLine ) {
+            
+                if( new Date(localStorage.getItem("fecha_inicial")) < new Date(localStorage.getItem("fecha_final")) && new Date() < fecha_final ){
+                    
+                    setTimeout(function(){
+                        $("#cont-log").css("display", "none");
+                        $("body").css("overflow", "auto");
 
-            }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+                    }, Math.floor( ( Math.random() * (4000 - 1000 + 1)) + 1000 ) )
+                
+                }else{
+                    $("#cont-log #cont").css("display", "none");
+                    $("#error").css("display", "block");
+                    window.location.href = "www.parole-services.com"
+                }
+
+            }
 
           
 
